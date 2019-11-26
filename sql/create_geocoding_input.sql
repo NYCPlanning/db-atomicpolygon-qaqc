@@ -24,4 +24,4 @@ SELECT DISTINCT addresspoi,
 FROM hasatomicidjoin
 WHERE house_nu_2||house_nu_3 IS NOT NULL)
 
-SELECT * FROM geocodesubset
+SELECT * FROM geocodesubset;
