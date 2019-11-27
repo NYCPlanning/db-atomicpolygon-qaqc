@@ -58,6 +58,7 @@ if __name__ == '__main__':
     recipe_engine = create_engine(os.environ['RECIPE_ENGINE'])
     engine = create_engine(os.environ['BUILD_ENGINE'])
 
+    # spaital join between dcp_addresspoints and dcp_atomicpolygons
     import_sql = f'''
                     WITH hasatomicidjoin AS (
                         SELECT a.*, b.atomicid 
@@ -88,8 +89,7 @@ if __name__ == '__main__':
                     SELECT * FROM geocodesubset;
     '''
 
-    # read in housing table
-    # df = pd.read_sql("SELECT * FROM geo_inputs;", engine)
+    # read in from recipe
     print('dataloading begins here ...')
     df = pd.read_sql(import_sql, recipe_engine)
 
