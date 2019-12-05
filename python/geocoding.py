@@ -36,7 +36,7 @@ def geocode(inputs):
     sname = str('' if sname is None else sname)
     borough = str('' if borough is None else borough)
     try:
-        geo = g['1E'](house_number=hnum, street_name=sname, borough=borough)
+        geo = g['1E'](house_number=hnum, street_name=sname, borough=borough, roadbed_request_switch='R')
     except GeosupportError as e:
         geo = e.result
 
