@@ -3,6 +3,7 @@
 This project aims to identify address points that match to different atomicids through spatial join and geocoding
 
 ## Instructions:
+0. Set RECIPE_ENGINE, BUILD_ENGINE and EDM_DATA in .env
 1. `sh 01_initialize.sh` to spin up a postgreSQL container
 2. `sh 02_geocoding.sh` to spatially join address points with atomic polygons and geocode address points
 3. `sh 03_export.sh` to output the table of mismatches
