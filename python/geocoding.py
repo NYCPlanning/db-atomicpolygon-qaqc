@@ -12,7 +12,7 @@ g = Geosupport()
 
 def get_sname(b7sc): 
     try:
-        geo = g['D'](B7SC=b7sc)
+        geo = g['DG'](B7SC=b7sc)
         return geo.get('First Street Name Normalized', '')
     except: 
         return ''
@@ -51,6 +51,10 @@ def geo_parser(geo):
         geo_streetname = geo.get('First Street Name Normalized', ''),
         geo_b10sc = geo.get('B10SC - First Borough and Street Code', ''),
         geo_censtract = geo.get('2010 Census Tract', ''),
+        geo_grc = geo.get('Geosupport Return Code (GRC)', ''),
+        geo_grc2 = geo.get('Geosupport Return Code 2 (GRC 2)', ''),
+        geo_reason_code = geo.get('Reason Code', ''),
+        geo_message = geo.get('Message', 'msg err')
     )
 
 if __name__ == '__main__':
@@ -100,9 +104,9 @@ if __name__ == '__main__':
     with Pool(processes=cpu_count()) as pool:
         it = pool.map(geocode, records, 10000)
     
-    print('geocoding finished, dumping tp postgres ...')
+    print('geocoding finished, dumping to postgres ...')
 
     df = pd.DataFrame(it)
     df['geo_borough_code'] = df['geo_b10sc'].apply(lambda x: get_boro_code(x))
 
-    df.to_sql('atomicid_geocode', engine, if_exists='replace', chunksize=10000)
+    df.to_sql('atomicid_geocode', engine, if_exists='replace', chunksize=10000, index = False)
