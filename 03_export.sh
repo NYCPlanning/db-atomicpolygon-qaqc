@@ -9,5 +9,5 @@ docker exec $DB_CONTAINER_NAME psql -h localhost -U postgres -c "\copy (SELECT *
                                 DELIMITER ',' CSV HEADER;"
 
 docker exec $DB_CONTAINER_NAME psql -h localhost -U postgres -c "\copy (SELECT * FROM geo_rejects)
-                                TO '/home/db-atomicpolygon-qaqc/output/geo_rejects.csv'
+                                TO '/home/db-atomicpolygon-qaqc/output/atomic_geo_rejects.csv'
                                 DELIMITER ',' CSV HEADER;"
